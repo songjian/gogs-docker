@@ -1,0 +1,18 @@
+version: "3"
+services:
+  gogs:
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.19.0.3
+  db:
+    restart: always
+    networks:
+      default:
+    environment:
+      - POSTGRES_PASSWORD=OF6LZKdrPWRY5dht
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16

@@ -1,0 +1,25 @@
+version: "3"
+services:
+  gogs:
+    image: gogs/gogs
+    links:
+      - db
+    depends_on:
+      - db
+    ports:
+      - "10022:22"
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - gogs-data:/data
+  db:
+    image: postgres:alpine
+    environment:
+      - TZ=Asia/Shanghai
+      - POSTGRES_DB=gogs
+      - POSTGRES_USER=gogs
+    volumes:
+      - gogs-db:/var/lib/postgresql/data
+volumes:
+  gogs-data:
+  gogs-db:
